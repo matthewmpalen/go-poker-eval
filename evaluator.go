@@ -9,7 +9,7 @@ import (
 //  This routine will search a deck for a specific card
 //  (specified by rank/suit), and return the INDEX giving
 //  the position of the found card.  If it is not found,
-//  then it returns -1
+//  then it returns an error
 func findCard(rank, suit int, deck []int) (int, error) {
 	for i, card := range deck {
 		if ((card & suit) != 0) && (Rank(card) == rank) {
@@ -65,8 +65,7 @@ func eval5Hand(hand []int) int {
 	}
 
 	// check for Straights and HighCard hands
-	s := unique5[q]
-	if s != 0 {
+	if s := unique5[q]; s != 0 {
 		return s
 	}
 
